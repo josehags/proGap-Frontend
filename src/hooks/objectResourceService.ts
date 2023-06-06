@@ -1,5 +1,5 @@
 import { APIObjectResource } from './baseService/baseService';
-import { message } from 'antd';
+import { message, notification } from 'antd';
 import { getConfig } from '../configs/sistemaConfig';
 
 interface ObjectResource {
@@ -24,6 +24,7 @@ export async function getObjectResource(url: any) {
       );
     }
     console.error(
+      'Erro do sistema: ',
       `An unexpected error occurred while retrieving the Object resource list.${error}`,
     );
   }

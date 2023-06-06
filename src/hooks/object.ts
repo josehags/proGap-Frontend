@@ -1,6 +1,6 @@
 import { getConfig } from '../configs/sistemaConfig';
 import { APIObject } from './baseService/baseService';
-import { message } from 'antd';
+import { message, notification } from 'antd';
 
 interface Objects {
   name: any;

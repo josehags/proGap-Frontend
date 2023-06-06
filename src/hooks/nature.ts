@@ -1,6 +1,6 @@
 import { getConfig } from '../configs/sistemaConfig';
 import { APINature } from './baseService/baseService';
-import { message } from 'antd';
+import { message, notification } from 'antd';
 
 interface Nature {
   name: any;

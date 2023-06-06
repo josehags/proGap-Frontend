@@ -1,10 +1,3 @@
-//Descrição
-/*export const sistemaNameSSO = 'NOMESISTEMA';
-export const domainNameProd = 'URLDOSISTEMAEMPROD';
-export const domainNameHomo = 'URLDOSISTEMAEMHOMO';
-export const domainNameDesv = 'localhost';
-*/
-
 export const sistemaNameSSO = 'PROGAP';
 export const sistemaDescricao = 'Plataforma para gerenciamento de recursos.';
 export const sistemaVersao = '1.0.0-00';
@@ -24,23 +17,19 @@ export const perfisSistema = {
 export const getConfig = (type: string) => {
   const configPub = {
     headers: {
-      'Access-Control-Allow-Origin': `${window.location.origin}`,
-      'Access-Control-Allow-Methods': 'POST, GET, PUT, OPTION',
+      'Access-Control-Allow-Origin': window.location.origin,
+      'Access-Control-Allow-Methods': '*',
       'Content-Type': 'application/json;charset=UTF-8',
     },
   };
-
   const configPriv = {
     headers: {
-      'Access-Control-Allow-Origin': `${window.location.origin}`,
-      'Access-Control-Allow-Headers':
-        'Authorization, Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Allow-Origin': window.location.origin,
+      'Access-Control-Allow-Headers': 'Authorization',
       'Access-Control-Allow-Methods': 'POST, GET, PUT, OPTION',
       'Content-Type': 'application/json;charset=UTF-8',
-      // eslint-disable-next-line prettier/prettier
-      'Authorization': `Bearer ${localStorage.getItem('token_sso')}`,
-      // eslint-disable-next-line prettier/prettier
-      'Token_sso': localStorage.getItem('token_sso'),
+      Authorization: `Bearer ${localStorage.getItem('token_sso')}`,
+      Token: localStorage.getItem('token_sso'),
     },
   };
 

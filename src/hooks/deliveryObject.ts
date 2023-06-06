@@ -1,6 +1,6 @@
 import { getConfig } from '../configs/sistemaConfig';
 import { APIDeliveryObject } from './baseService/baseService';
-import { message } from 'antd';
+import { message, notification } from 'antd';
 
 interface DeliveryObject {
   deliveryDate: string;
