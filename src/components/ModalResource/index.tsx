@@ -29,6 +29,7 @@ const ModalResource = ({
 }: Props) => {
   const [axles, setAxles] = useState<AxlesResponse[]>([]);
   const [selectAxlesId, setSelectedAxlesId] = useState('');
+  const [showAxle, setShowAxle] = useState(false);
 
   const [form] = Form.useForm();
 
@@ -102,7 +103,9 @@ const ModalResource = ({
   function handleSelectAxle(value: any) {
     setSelectedAxlesId(value); // Atualiza o estado com o ID selecionado
   }
-
+  const handleSelectType = (value: any) => {
+    setShowAxle(value === 'Fundo a Fundo');
+  };
   return (
     <Modal
       open={openModal}
@@ -134,10 +137,11 @@ const ModalResource = ({
                   { value: 'Emenda Estadual', label: 'Emenda Estadual' },
                   { value: 'Tesouro Estadual', label: 'Tesouro Estadual' },
                 ]}
+                onChange={handleSelectType}
               />
             </Form.Item>
           </Col>
-          {form.getFieldValue(['type']) === 'Fundo a Fundo' && (
+          {showAxle && (
             <Col span={8}>
               <Form.Item name={['axle']} label="Eixo">
                 <Select
@@ -159,7 +163,7 @@ const ModalResource = ({
             </Col>
           )}
 
-          {form.getFieldValue(['type']) !== 'Fundo a Fundo' && (
+          {!showAxle && (
             <Col span={8}>
               <Form.Item name={['grantor']} label="Concedente">
                 <Input />
@@ -195,7 +199,7 @@ const ModalResource = ({
               />
             </Form.Item>
           </Col>
-          {form.getFieldValue(['type']) !== 'Fundo a Fundo' ? (
+          {!showAxle ? (
             <Col span={8}>
               <Form.Item name={['resourceNumber']} label="Número do recurso">
                 <Input />
@@ -219,7 +223,7 @@ const ModalResource = ({
             </Form.Item>
           </Col>
 
-          <Col span={form.getFieldValue(['type']) !== 'Fundo a Fundo' ? 6 : 8}>
+          <Col span={showAxle ? 8 : 6}>
             <Form.Item name={['commitmentDate']} label="Data do empenho">
               <ReactInputMask
                 className="input-mask-date"
@@ -229,7 +233,7 @@ const ModalResource = ({
               />
             </Form.Item>
           </Col>
-          <Col span={form.getFieldValue(['type']) !== 'Fundo a Fundo' ? 6 : 8}>
+          <Col span={!showAxle ? 6 : 8}>
             <Form.Item name={['deliveryDate']} label="Data da entrega">
               <ReactInputMask
                 className="input-mask-date"
@@ -239,7 +243,7 @@ const ModalResource = ({
               />
             </Form.Item>
           </Col>
-          <Col span={form.getFieldValue(['type']) !== 'Fundo a Fundo' ? 6 : 8}>
+          <Col span={showAxle ? 8 : 6}>
             <Form.Item name={['settlementDate']} label="Data da liquidação">
               <ReactInputMask
                 className="input-mask-date"

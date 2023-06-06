@@ -413,13 +413,15 @@ export default function Resources() {
     }
   };
 
-  // LISTAGEM DE RECURSOS
+  // LISTAGEM DE RECURSOS, DESTINAÇÕES E OBEJTOS DO RECURSOS
   useEffect(() => {
     setShowModal(false);
   }, []);
 
   useEffect(() => {
     loadingResourceForm();
+    loadingDestinyForm();
+    loadingObjectResourceForm();
   }, []);
   //atualização do formulario com novos recursos
   const handleResourceCreated = () => {
@@ -440,15 +442,6 @@ export default function Resources() {
     setResources(newObjResource);
     loadingResourceForm();
   };
-
-  // LISTAGEM DE DESTINAÇÃO
-  useEffect(() => {
-    setShowModal(false);
-  }, []);
-
-  useEffect(() => {
-    loadingDestinyForm();
-  }, []);
   //atualização do formulario com novas destinações
   const handleDestinyCreated = () => {
     loadingDestinyForm();
@@ -470,14 +463,6 @@ export default function Resources() {
     loadingDestinyForm();
   };
 
-  // LISTAGEM DE OBJETOS DOS RECURSO
-  useEffect(() => {
-    setShowModal(false);
-  }, []);
-
-  useEffect(() => {
-    loadingObjectResourceForm();
-  }, []);
   //atualização do formulario com novas objetos do recursos
   const handleObjectResourceCreated = () => {
     loadingObjectResourceForm();
