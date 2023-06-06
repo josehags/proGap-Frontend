@@ -22,25 +22,12 @@ import ModalAxle from '../../components/ModalAxle';
 
 interface DataType {
   key: React.Key;
-  //id: string;
+  id: string;
   name: string;
   description: string;
 }
 
 type DataIndex = keyof DataType;
-
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'Eixo I',
-    description: 'teste de eixo',
-  },
-  {
-    key: '2',
-    name: 'Eixo IV',
-    description: 'obersavações',
-  },
-];
 
 export default function Axle() {
   const [searchText, setSearchText] = useState('');
@@ -48,7 +35,7 @@ export default function Axle() {
   const searchInput = useRef<InputRef>(null);
   const [showModal, setShowModal] = useState(false);
 
-  const [axle, setAxle] = useState([]);
+  const [axle, setAxle] = useState<DataType[]>([]); // Adicione a tipagem para o estado axle
   const [recordAxle, setRecordAxle] = useState<any>({});
 
   const handleSearch = (
@@ -218,12 +205,11 @@ export default function Axle() {
   // LISTAGEM DE EIXOS
   useEffect(() => {
     setShowModal(false);
-    loadingAxleForm();
   }, []);
 
   useEffect(() => {
     loadingAxleForm();
-  }, [axle]);
+  }, []);
 
   async function loadingAxleForm() {
     const response = await getAxles('axles');
@@ -233,7 +219,9 @@ export default function Axle() {
       message.error('Ocorreu um erro inesperado ao obter os eixos.');
     }
   }
-
+  const handleAxleCreated = () => {
+    loadingAxleForm();
+  };
   // Exclusão de EIXOS
   const ClickDeleteAxle = async (record: any) => {
     await deleteaxles(record);
@@ -281,6 +269,7 @@ export default function Axle() {
         id={recordAxle?.id}
         openModal={showModal}
         closeModal={hideModal}
+        onAxleCreated={handleAxleCreated} // Passa a função handleAxleCreated como prop
       />
     </>
   );

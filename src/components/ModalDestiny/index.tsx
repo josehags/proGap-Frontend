@@ -10,10 +10,17 @@ type Props = {
   id: string;
   idResource: string;
   openModal: boolean;
+  onDestinyCreated: () => void;
   closeModal: (refresh: boolean) => void;
 };
 
-const ModalDestiny = ({ id, idResource, openModal, closeModal }: Props) => {
+const ModalDestiny = ({
+  id,
+  idResource,
+  openModal,
+  closeModal,
+  onDestinyCreated,
+}: Props) => {
   const [form] = Form.useForm();
   const handleOk = (e: any) => {
     e.preventDefault();
@@ -27,6 +34,7 @@ const ModalDestiny = ({ id, idResource, openModal, closeModal }: Props) => {
         }
         form.resetFields();
         closeModal(true);
+        onDestinyCreated();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };

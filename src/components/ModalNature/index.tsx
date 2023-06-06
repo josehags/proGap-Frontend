@@ -5,10 +5,11 @@ import { getNature, postNature, updateNature } from '../../hooks/nature';
 type Props = {
   id: string;
   openModal: boolean;
+  onNatureCreated: () => void;
   closeModal: (refresh: boolean) => void;
 };
 
-const ModalNature = ({ id, openModal, closeModal }: Props) => {
+const ModalNature = ({ id, openModal, closeModal, onNatureCreated }: Props) => {
   const [form] = Form.useForm();
   const handleOk = (e: any) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const ModalNature = ({ id, openModal, closeModal }: Props) => {
         }
         form.resetFields();
         closeModal(true);
+        onNatureCreated();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };

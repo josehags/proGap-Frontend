@@ -215,13 +215,15 @@ export default function Objects() {
   // LISTAGEM DE OBJETOS
   useEffect(() => {
     setShowModal(false);
-    loadingObjectsForm();
   }, []);
 
   useEffect(() => {
     loadingObjectsForm();
-  }, [objects]);
+  }, []);
 
+  const handleObjectsCreated = () => {
+    loadingObjectsForm();
+  };
   async function loadingObjectsForm() {
     const response = await getObject('objects');
     if (response !== false) {
@@ -231,7 +233,7 @@ export default function Objects() {
     }
   }
 
-  // exclusão de objectsza
+  // exclusão de objects
   const ClickDeleteObjects = async (record: any) => {
     await deleteObject(record);
     const newObjects = [...objects];
@@ -278,6 +280,7 @@ export default function Objects() {
         id={recordObjects?.id}
         openModal={showModal}
         closeModal={hideModal}
+        onObjectsCreated={handleObjectsCreated}
       />
     </>
   );

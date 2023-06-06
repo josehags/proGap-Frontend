@@ -6,10 +6,11 @@ import { postModel, updateModel } from '../../hooks/model';
 type Props = {
   id: string;
   openModal: boolean;
+  onModelCreated: () => void;
   closeModal: (refresh: boolean) => void;
 };
 
-const ModalModel = ({ id, openModal, closeModal }: Props) => {
+const ModalModel = ({ id, openModal, closeModal, onModelCreated }: Props) => {
   const [form] = Form.useForm();
   const handleOk = (e: any) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ const ModalModel = ({ id, openModal, closeModal }: Props) => {
         }
         form.resetFields();
         closeModal(true);
+        onModelCreated(); //Chama a prop  após o cadastro de novo modelo
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };

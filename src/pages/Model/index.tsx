@@ -198,12 +198,15 @@ export default function Model() {
   // LISTAGEM DE EIXOS
   useEffect(() => {
     setShowModal(false);
-    loadingModelForm();
   }, []);
 
   useEffect(() => {
     loadingModelForm();
-  }, [model]);
+  }, []);
+
+  const handleModelCreated = () => {
+    loadingModelForm;
+  };
 
   async function loadingModelForm() {
     const response = await getModel('model');
@@ -259,6 +262,7 @@ export default function Model() {
         id={recordModel?.id}
         openModal={showModal}
         closeModal={hideModal}
+        onModelCreated={handleModelCreated} // Passa a função handleAxleCreated como prop
       />
     </>
   );

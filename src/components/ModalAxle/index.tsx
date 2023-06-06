@@ -5,10 +5,11 @@ import { getAxles, postAxles, updateAxles } from '../../hooks/axleService';
 type Props = {
   id: string;
   openModal: boolean;
+  onAxleCreated: () => void;
   closeModal: (refresh: boolean) => void;
 };
 
-const ModalAxle = ({ id, openModal, closeModal }: Props) => {
+const ModalAxle = ({ id, openModal, closeModal, onAxleCreated }: Props) => {
   const [form] = Form.useForm();
 
   const handleOk = (e: any) => {
@@ -23,6 +24,7 @@ const ModalAxle = ({ id, openModal, closeModal }: Props) => {
         }
         form.resetFields();
         closeModal(true);
+        onAxleCreated(); // Chama a prop  após o cadastro de novo eixo
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };
@@ -46,17 +48,18 @@ const ModalAxle = ({ id, openModal, closeModal }: Props) => {
       });
     }
   }
-  //ATUALIZAÇÃO DE USUARIOS************
+  // CRIAÇÃO DE eixos
+  const submitCreate = async () => {
+    const editingAxle = form.getFieldsValue(true);
+    await postAxles(editingAxle);
+  };
+
+  //ATUALIZAÇÃO DE eixos************
   const submitUpdate = async () => {
     const editingAxle = form.getFieldsValue(true);
     await updateAxles(editingAxle, id);
   };
 
-  // CRIAÇÃO DE USUARIOS
-  const submitCreate = async () => {
-    const editingAxle = form.getFieldsValue(true);
-    await postAxles(editingAxle);
-  };
   return (
     <>
       <Modal

@@ -17,10 +17,16 @@ type AxlesResponse = {
 type Props = {
   id: string;
   openModal: boolean;
+  onResourceCreated: () => void;
   closeModal: (refresh: boolean) => void;
 };
 
-const ModalResource = ({ id, openModal, closeModal }: Props) => {
+const ModalResource = ({
+  id,
+  openModal,
+  closeModal,
+  onResourceCreated,
+}: Props) => {
   const [axles, setAxles] = useState<AxlesResponse[]>([]);
   const [selectAxlesId, setSelectedAxlesId] = useState('');
 
@@ -38,6 +44,7 @@ const ModalResource = ({ id, openModal, closeModal }: Props) => {
         }
         form.resetFields();
         closeModal(true);
+        onResourceCreated();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };

@@ -89,7 +89,7 @@ const ModalObjectDelivery = ({
 
   useEffect(() => {
     loadingDeliveryForm();
-  }, [delivery]);
+  }, []);
 
   //listando as entregas relacionadas com os objetso do recursos
   async function loadingDeliveryForm() {
@@ -123,6 +123,7 @@ const ModalObjectDelivery = ({
 
   const handleCreateDelivery = async () => {
     await submitCreate();
+    loadingDeliveryForm();
   };
 
   return (

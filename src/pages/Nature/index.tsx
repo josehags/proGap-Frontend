@@ -200,13 +200,14 @@ export default function Nature() {
   // LISTAGEM DE EIXOS
   useEffect(() => {
     setShowModal(false);
-    loadingNatureForm();
   }, []);
 
   useEffect(() => {
     loadingNatureForm();
-  }, [nature]);
-
+  }, []);
+  const handleNatureCreated = () => {
+    loadingNatureForm();
+  };
   async function loadingNatureForm() {
     const response = await getNature('nature');
     if (response !== false) {
@@ -262,6 +263,7 @@ export default function Nature() {
         id={recordnature?.id}
         openModal={showModal}
         closeModal={hideModal}
+        onNatureCreated={handleNatureCreated}
       />
     </>
   );

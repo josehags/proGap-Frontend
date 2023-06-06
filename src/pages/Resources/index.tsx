@@ -416,12 +416,15 @@ export default function Resources() {
   // LISTAGEM DE RECURSOS
   useEffect(() => {
     setShowModal(false);
-    loadingResourceForm();
   }, []);
 
   useEffect(() => {
     loadingResourceForm();
-  }, [resources]);
+  }, []);
+  //atualização do formulario com novos recursos
+  const handleResourceCreated = () => {
+    loadingResourceForm();
+  };
 
   async function loadingResourceForm() {
     const response = await getResource('resources');
@@ -441,13 +444,15 @@ export default function Resources() {
   // LISTAGEM DE DESTINAÇÃO
   useEffect(() => {
     setShowModal(false);
-    loadingDestinyForm();
   }, []);
 
   useEffect(() => {
     loadingDestinyForm();
-  }, [destinations]);
-
+  }, []);
+  //atualização do formulario com novas destinações
+  const handleDestinyCreated = () => {
+    loadingDestinyForm();
+  };
   async function loadingDestinyForm() {
     const response = await getDestinations('destinations');
     if (response !== false) {
@@ -468,16 +473,17 @@ export default function Resources() {
   // LISTAGEM DE OBJETOS DOS RECURSO
   useEffect(() => {
     setShowModal(false);
-    loadingObjectResourceForm();
   }, []);
 
   useEffect(() => {
     loadingObjectResourceForm();
-  }, [objectResource]);
-
+  }, []);
+  //atualização do formulario com novas objetos do recursos
+  const handleObjectResourceCreated = () => {
+    loadingObjectResourceForm();
+  };
   async function loadingObjectResourceForm() {
     const response = await getObjectResource('resourceobjects');
-    console.log(response);
     if (response !== false) {
       setObjectResource(response.data);
     } else {
@@ -571,18 +577,21 @@ export default function Resources() {
         id={recordResource?.id}
         openModal={showModal}
         closeModal={hideModal}
+        onResourceCreated={handleResourceCreated}
       />
       <ModalDestiny
         id={recordDestinations?.id}
         idResource={recordResource?.id}
         openModal={modalUnits}
         closeModal={hideModalDestinations}
+        onDestinyCreated={handleDestinyCreated}
       />
       <ModalObjectResource
         id={recordObjectResource?.id}
         idDestination={recordDestinations?.id}
         openModal={modalObjectResource}
         closeModal={hideModalObjectResourse}
+        onObjectResourceCreated={handleObjectResourceCreated}
       />
       <ModalObjectDelivery
         idObjectResource={recordObjectResource?.id}

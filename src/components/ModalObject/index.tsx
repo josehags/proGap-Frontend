@@ -6,6 +6,7 @@ import { getObject, postObject, updateObject } from '../../hooks/object';
 type Props = {
   id: string;
   openModal: boolean;
+  onObjectsCreated: () => void;
   closeModal: (refresh: boolean) => void;
 };
 
@@ -18,7 +19,12 @@ type ModelResponse = {
   name: string;
 };
 
-const ModalObject = ({ id, openModal, closeModal }: Props) => {
+const ModalObject = ({
+  id,
+  openModal,
+  closeModal,
+  onObjectsCreated,
+}: Props) => {
   const [form] = Form.useForm();
 
   const [models, setModels] = useState<ModelResponse[]>([]);
@@ -106,6 +112,7 @@ const ModalObject = ({ id, openModal, closeModal }: Props) => {
         }
         form.resetFields();
         closeModal(true);
+        onObjectsCreated();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };

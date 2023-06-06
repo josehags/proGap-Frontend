@@ -12,6 +12,7 @@ type Props = {
   id: string;
   idDestination: string;
   openModal: boolean;
+  onObjectResourceCreated: () => void;
   closeModal: (refresh: boolean) => void;
 };
 type ModelObjects = {
@@ -27,6 +28,7 @@ const ModalObjectResource = ({
   idDestination,
   openModal,
   closeModal,
+  onObjectResourceCreated,
 }: Props) => {
   const [objects, setObjects] = useState<ModelObjects[]>([]);
   const [selectModelId, setSelectedObjectId] = useState('');
@@ -122,6 +124,7 @@ const ModalObjectResource = ({
         }
         form.resetFields();
         closeModal(true);
+        onObjectResourceCreated();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };
