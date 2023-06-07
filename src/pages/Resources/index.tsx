@@ -425,7 +425,8 @@ export default function Resources() {
     loadingObjectResourceForm();
   }, []);
   //atualização do formulario com novos recursos
-  const handleResourceCreated = () => {
+  const updateResourceList = (newResource: any) => {
+    setResources(prevResource => [...prevResource, newResource]);
     loadingResourceForm();
   };
 
@@ -444,7 +445,8 @@ export default function Resources() {
     loadingResourceForm();
   };
   //atualização do formulario com novas destinações
-  const handleDestinyCreated = () => {
+  const updateDestinyList = (newDestiny: any) => {
+    setDestinations(prevDestiny => [...prevDestiny, newDestiny]);
     loadingDestinyForm();
   };
   async function loadingDestinyForm() {
@@ -465,7 +467,11 @@ export default function Resources() {
   };
 
   //atualização do formulario com novas objetos do recursos
-  const handleObjectResourceCreated = () => {
+  const updateResourceObjectsList = (newRObjectResource: any) => {
+    setObjectResource(prevObjectResource => [
+      ...prevObjectResource,
+      newRObjectResource,
+    ]);
     loadingObjectResourceForm();
   };
   async function loadingObjectResourceForm() {
@@ -563,21 +569,21 @@ export default function Resources() {
         id={recordResource?.id}
         openModal={showModal}
         closeModal={hideModal}
-        onResourceCreated={handleResourceCreated}
+        updateResourceList={updateResourceList}
       />
       <ModalDestiny
         id={recordDestinations?.id}
         idResource={recordResource?.id}
         openModal={modalUnits}
         closeModal={hideModalDestinations}
-        onDestinyCreated={handleDestinyCreated}
+        updateDestinyList={updateDestinyList}
       />
       <ModalObjectResource
         id={recordObjectResource?.id}
         idDestination={recordDestinations?.id}
         openModal={modalObjectResource}
         closeModal={hideModalObjectResourse}
-        onObjectResourceCreated={handleObjectResourceCreated}
+        updateResourceObjectsList={updateResourceObjectsList}
       />
       <ModalObjectDelivery
         idObjectResource={recordObjectResource?.id}

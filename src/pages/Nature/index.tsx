@@ -206,9 +206,11 @@ export default function Nature() {
   useEffect(() => {
     loadingNatureForm();
   }, []);
-  const handleNatureCreated = () => {
+  const updateNatureList = (newNature: any) => {
+    setNature(prevAxle => [...prevAxle, newNature]);
     loadingNatureForm();
   };
+
   async function loadingNatureForm() {
     const response = await getNature('nature');
     if (response !== false) {
@@ -264,7 +266,7 @@ export default function Nature() {
         id={recordnature?.id}
         openModal={showModal}
         closeModal={hideModal}
-        onNatureCreated={handleNatureCreated}
+        updateNatureList={updateNatureList}
       />
     </>
   );

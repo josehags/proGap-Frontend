@@ -5,11 +5,16 @@ import { getNature, postNature, updateNature } from '../../hooks/nature';
 type Props = {
   id: string;
   openModal: boolean;
-  onNatureCreated: () => void;
+  updateNatureList: any;
   closeModal: (refresh: boolean) => void;
 };
 
-const ModalNature = ({ id, openModal, closeModal, onNatureCreated }: Props) => {
+const ModalNature = ({
+  id,
+  openModal,
+  closeModal,
+  updateNatureList,
+}: Props) => {
   const [form] = Form.useForm();
   const handleOk = (e: any) => {
     e.preventDefault();
@@ -23,7 +28,6 @@ const ModalNature = ({ id, openModal, closeModal, onNatureCreated }: Props) => {
         }
         form.resetFields();
         closeModal(true);
-        onNatureCreated();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };
@@ -50,12 +54,14 @@ const ModalNature = ({ id, openModal, closeModal, onNatureCreated }: Props) => {
   const submitUpdate = async () => {
     const editingNature = form.getFieldsValue(true);
     await updateNature(editingNature, id);
+    updateNatureList(editingNature);
   };
 
   // CRIAÇÃO DE USUARIOS
   const submitCreate = async () => {
     const editingNature = form.getFieldsValue(true);
     await postNature(editingNature);
+    updateNatureList(editingNature);
   };
   return (
     <>

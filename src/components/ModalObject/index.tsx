@@ -6,7 +6,7 @@ import { getObject, postObject, updateObject } from '../../hooks/object';
 type Props = {
   id: string;
   openModal: boolean;
-  onObjectsCreated: () => void;
+  updateObjectsList: any;
   closeModal: (refresh: boolean) => void;
 };
 
@@ -23,7 +23,7 @@ const ModalObject = ({
   id,
   openModal,
   closeModal,
-  onObjectsCreated,
+  updateObjectsList,
 }: Props) => {
   const [form] = Form.useForm();
 
@@ -93,12 +93,17 @@ const ModalObject = ({
   const submitUpdate = async () => {
     const editingObjects = form.getFieldsValue(true);
     await updateObject(editingObjects, id);
+    //atualizando lista de objetod
+
+    updateObjectsList(editingObjects);
   };
 
   // CRIAÇÃO DE USUARIOS
   const submitCreate = async () => {
     const editingObjects = form.getFieldsValue(true);
     await postObject(editingObjects);
+    //atualizando lista de objetod
+    updateObjectsList(editingObjects);
   };
   const handleOk = (e: any) => {
     e.preventDefault();
@@ -112,7 +117,6 @@ const ModalObject = ({
         }
         form.resetFields();
         closeModal(true);
-        onObjectsCreated();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };

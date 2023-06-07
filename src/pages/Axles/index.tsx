@@ -219,7 +219,8 @@ export default function Axle() {
       message.error('Ocorreu um erro inesperado ao obter os eixos.');
     }
   }
-  const handleAxleCreated = () => {
+  const updateAxleList = (newAxle: any) => {
+    setAxle(prevAxle => [...prevAxle, newAxle]);
     loadingAxleForm();
   };
   // Exclusão de EIXOS
@@ -269,7 +270,7 @@ export default function Axle() {
         id={recordAxle?.id}
         openModal={showModal}
         closeModal={hideModal}
-        onAxleCreated={handleAxleCreated} // Passa a função handleAxleCreated como prop
+        updateAxleList={updateAxleList} // Passa a função handleAxleCreated como prop
       />
     </>
   );

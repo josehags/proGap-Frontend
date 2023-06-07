@@ -12,7 +12,7 @@ type Props = {
   id: string;
   idDestination: string;
   openModal: boolean;
-  onObjectResourceCreated: () => void;
+  updateResourceObjectsList: any;
   closeModal: (refresh: boolean) => void;
 };
 type ModelObjects = {
@@ -28,7 +28,7 @@ const ModalObjectResource = ({
   idDestination,
   openModal,
   closeModal,
-  onObjectResourceCreated,
+  updateResourceObjectsList,
 }: Props) => {
   const [objects, setObjects] = useState<ModelObjects[]>([]);
   const [selectModelId, setSelectedObjectId] = useState('');
@@ -102,12 +102,14 @@ const ModalObjectResource = ({
   const submitUpdate = async () => {
     const editingObjectsResource = form.getFieldsValue(true);
     await updateObjectResource(editingObjectsResource, id);
+    updateResourceObjectsList(editingObjectsResource);
   };
 
   // CRIAÇÃO DE USUARIOS
   const submitCreate = async () => {
     const editingObjectsResource = form.getFieldsValue(true);
     await postObjectResource(editingObjectsResource);
+    updateResourceObjectsList(editingObjectsResource);
   };
   const handleOk = (e: any) => {
     e.preventDefault();
@@ -121,7 +123,6 @@ const ModalObjectResource = ({
         }
         form.resetFields();
         closeModal(true);
-        onObjectResourceCreated();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };

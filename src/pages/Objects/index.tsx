@@ -221,7 +221,8 @@ export default function Objects() {
     loadingObjectsForm();
   }, []);
 
-  const handleObjectsCreated = () => {
+  const updateObjectsList = (newObjects: any) => {
+    setObjects(prevObjects => [...prevObjects, newObjects]);
     loadingObjectsForm();
   };
   async function loadingObjectsForm() {
@@ -280,7 +281,7 @@ export default function Objects() {
         id={recordObjects?.id}
         openModal={showModal}
         closeModal={hideModal}
-        onObjectsCreated={handleObjectsCreated}
+        updateObjectsList={updateObjectsList} // Passa a função handleAxleCreated como prop
       />
     </>
   );

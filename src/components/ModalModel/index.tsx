@@ -6,11 +6,11 @@ import { postModel, updateModel } from '../../hooks/model';
 type Props = {
   id: string;
   openModal: boolean;
-  onModelCreated: () => void;
+  updateModelList: any;
   closeModal: (refresh: boolean) => void;
 };
 
-const ModalModel = ({ id, openModal, closeModal, onModelCreated }: Props) => {
+const ModalModel = ({ id, openModal, closeModal, updateModelList }: Props) => {
   const [form] = Form.useForm();
   const handleOk = (e: any) => {
     e.preventDefault();
@@ -23,7 +23,6 @@ const ModalModel = ({ id, openModal, closeModal, onModelCreated }: Props) => {
           submitCreate();
         }
         form.resetFields();
-        onModelCreated(); //Chama a prop  após o cadastro de novo modelo
         closeModal(true);
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
@@ -51,12 +50,14 @@ const ModalModel = ({ id, openModal, closeModal, onModelCreated }: Props) => {
   const submitUpdate = async () => {
     const editingModel = form.getFieldsValue(true);
     await updateModel(editingModel, id);
+    updateModelList(editingModel);
   };
 
   // CRIAÇÃO DE USUARIOS
   const submitCreate = async () => {
     const editingModel = form.getFieldsValue(true);
     await postModel(editingModel);
+    updateModelList(editingModel);
   };
   return (
     <>

@@ -17,7 +17,7 @@ type AxlesResponse = {
 type Props = {
   id: string;
   openModal: boolean;
-  onResourceCreated: () => void;
+  updateResourceList: any;
   closeModal: (refresh: boolean) => void;
 };
 
@@ -25,7 +25,7 @@ const ModalResource = ({
   id,
   openModal,
   closeModal,
-  onResourceCreated,
+  updateResourceList,
 }: Props) => {
   const [axles, setAxles] = useState<AxlesResponse[]>([]);
   const [selectAxlesId, setSelectedAxlesId] = useState('');
@@ -44,7 +44,6 @@ const ModalResource = ({
           submitCreate();
         }
         form.resetFields();
-        onResourceCreated();
         closeModal(true);
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
@@ -80,12 +79,14 @@ const ModalResource = ({
   const submitUpdate = async () => {
     const editingResource = form.getFieldsValue(true);
     await updateResource(editingResource, id);
+    updateResourceList(editingResource);
   };
 
   // CRIAÇÃO DE USUARIOS
   const submitCreate = async () => {
     const editingResource = form.getFieldsValue(true);
     await postResource(editingResource);
+    updateResourceList(editingResource);
   };
 
   //carregando os eixos

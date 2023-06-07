@@ -213,7 +213,8 @@ export default function Model() {
       message.error('Ocorreu um erro inesperado ao obter os modelos.');
     }
   }
-  const handleModelCreated = () => {
+  const loadigModel = (newModel: any) => {
+    setModel(prevModel => [...prevModel, newModel]);
     loadingModelForm();
   };
   // Exclusão de modelos
@@ -262,7 +263,7 @@ export default function Model() {
         id={recordModel?.id}
         openModal={showModal}
         closeModal={hideModal}
-        onModelCreated={handleModelCreated} // Passa a função handleModelCreated como prop
+        updateModelList={loadigModel} // Passa a função loadigModel como prop
       />
     </>
   );

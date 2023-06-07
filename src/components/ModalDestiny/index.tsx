@@ -10,7 +10,7 @@ type Props = {
   id: string;
   idResource: string;
   openModal: boolean;
-  onDestinyCreated: () => void;
+  updateDestinyList: any;
   closeModal: (refresh: boolean) => void;
 };
 
@@ -19,7 +19,7 @@ const ModalDestiny = ({
   idResource,
   openModal,
   closeModal,
-  onDestinyCreated,
+  updateDestinyList,
 }: Props) => {
   const [form] = Form.useForm();
   const handleOk = (e: any) => {
@@ -34,7 +34,6 @@ const ModalDestiny = ({
         }
         form.resetFields();
         closeModal(true);
-        onDestinyCreated();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };
@@ -52,7 +51,6 @@ const ModalDestiny = ({
     if (id) {
       await getDestinations(`destinations/${id}`).then(response => {
         if (response !== false) {
-          console.log(response.data);
           form.setFieldsValue({
             id: response.data.id,
             resources: response.data.resources.id,
@@ -69,12 +67,14 @@ const ModalDestiny = ({
   const submitUpdate = async () => {
     const editingDestinations = form.getFieldsValue(true);
     await updateDestinations(editingDestinations, id);
+    updateDestinyList(editingDestinations);
   };
 
   // CRIAÇÃO DE Destinos
   const submitCreate = async () => {
     const editingDestinations = form.getFieldsValue(true);
     await postDestinations(editingDestinations);
+    updateDestinyList(editingDestinations);
   };
 
   return (
