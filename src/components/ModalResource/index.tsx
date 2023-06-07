@@ -183,23 +183,26 @@ const ModalResource = ({
             </Form.Item>
           </Col>
 
-          <Col span={8}>
-            <Form.Item name={['typeExpense']} label="Tipo de gasto">
-              <Select
-                showSearch
-                placeholder={'Selecione o tipo'}
-                filterOption={(input, option) =>
-                  (option?.label ?? '')
-                    .toLowerCase()
-                    .includes(input.toLowerCase())
-                }
-                options={[
-                  { value: 'Custeio', label: 'Custeio' },
-                  { value: 'Investimento', label: 'Investimento' },
-                ]}
-              />
-            </Form.Item>
-          </Col>
+          {showAxle && (
+            <Col span={8}>
+              <Form.Item name={['typeExpense']} label="Tipo de gasto">
+                <Select
+                  showSearch
+                  placeholder={'Selecione o tipo'}
+                  filterOption={(input, option) =>
+                    (option?.label ?? '')
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  options={[
+                    { value: 'Custeio', label: 'Custeio' },
+                    { value: 'Investimento', label: 'Investimento' },
+                  ]}
+                />
+              </Form.Item>
+            </Col>
+          )}
+
           {!showAxle ? (
             <Col span={8}>
               <Form.Item name={['resourceNumber']} label="Número do recurso">
@@ -213,7 +216,7 @@ const ModalResource = ({
               <Input />
             </Form.Item>
           </Col>
-          <Col span={form.getFieldValue(['type']) !== 'Fundo a Fundo' ? 6 : 8}>
+          <Col span={form.getFieldValue(['type']) !== 'Fundo a Fundo' ? 8 : 8}>
             <Form.Item
               name={['processNumber']}
               label="Nº processo"
@@ -224,7 +227,7 @@ const ModalResource = ({
             </Form.Item>
           </Col>
 
-          <Col span={showAxle ? 8 : 6}>
+          <Col span={8}>
             <Form.Item name={['commitmentDate']} label="Data do empenho">
               <ReactInputMask
                 className="input-mask-date"
@@ -234,7 +237,7 @@ const ModalResource = ({
               />
             </Form.Item>
           </Col>
-          <Col span={!showAxle ? 6 : 8}>
+          <Col span={8}>
             <Form.Item name={['deliveryDate']} label="Data da entrega">
               <ReactInputMask
                 className="input-mask-date"
@@ -244,7 +247,7 @@ const ModalResource = ({
               />
             </Form.Item>
           </Col>
-          <Col span={showAxle ? 8 : 6}>
+          <Col span={8}>
             <Form.Item name={['settlementDate']} label="Data da liquidação">
               <ReactInputMask
                 className="input-mask-date"
