@@ -286,6 +286,7 @@ export default function Resources() {
       dataIndex: 'typeExpense',
       key: 'typeExpense',
       width: '9%',
+      render: (value: any) => value || '***************',
     },
     {
       title: 'Eixo',
