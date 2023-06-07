@@ -1,6 +1,6 @@
 import { getConfig } from '../configs/sistemaConfig';
 import { APIDestination } from './baseService/baseService';
-import { message, notification } from 'antd';
+import { message } from 'antd';
 
 interface Destinations {
   name: any;

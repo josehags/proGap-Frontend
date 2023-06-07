@@ -72,7 +72,8 @@ const ModalObjectResource = ({
   // listando objeto e destinações
   useEffect(() => {
     loadingObjects();
-  }, [objects]);
+    loadingObjcResource();
+  }, []);
 
   async function loadingObjects() {
     const response = await getObject('objects');
@@ -82,10 +83,6 @@ const ModalObjectResource = ({
       message.error('Ocorreu um erro inesperado ao obter os objetos.');
     }
   }
-
-  useEffect(() => {
-    loadingObjcResource();
-  }, [destinations]);
 
   async function loadingObjcResource() {
     const response = await getDestinations('destinations');
