@@ -44,8 +44,8 @@ const ModalResource = ({
           submitCreate();
         }
         form.resetFields();
-        closeModal(true);
         onResourceCreated();
+        closeModal(true);
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };

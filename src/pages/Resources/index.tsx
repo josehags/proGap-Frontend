@@ -71,7 +71,8 @@ export default function Resources() {
   const [modalObjectResource, setModalObjectResourse] = useState(false);
   const [modalObjectDelivery, setModalObjectDelivery] = useState(false);
 
-  const [resources, setResources] = useState<any[]>([]);
+  const [resources, setResources] = useState<DataType[]>([]);
+
   const [recordResource, setRecordResource] = useState<any>({});
 
   const [destinations, setDestinations] = useState<any[]>([]);

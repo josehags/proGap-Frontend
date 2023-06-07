@@ -35,7 +35,8 @@ export default function Nature() {
   const searchInput = useRef<InputRef>(null);
   const [showModal, setShowModal] = useState(false);
 
-  const [nature, setNature] = useState([]);
+  const [nature, setNature] = useState<DataType[]>([]);
+
   const [recordnature, setRecordNature] = useState<any>({});
 
   const handleSearch = (

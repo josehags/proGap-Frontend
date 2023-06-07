@@ -34,7 +34,8 @@ export default function Model() {
   const searchInput = useRef<InputRef>(null);
   const [showModal, setShowModal] = useState(false);
 
-  const [model, setModel] = useState([]);
+  const [model, setModel] = useState<DataType[]>([]);
+
   const [recordModel, setRecordModel] = useState<any>({});
 
   const handleSearch = (
@@ -204,10 +205,6 @@ export default function Model() {
     loadingModelForm();
   }, []);
 
-  const handleModelCreated = () => {
-    loadingModelForm;
-  };
-
   async function loadingModelForm() {
     const response = await getModel('model');
     if (response !== false) {
@@ -216,6 +213,9 @@ export default function Model() {
       message.error('Ocorreu um erro inesperado ao obter os modelos.');
     }
   }
+  const handleModelCreated = () => {
+    loadingModelForm();
+  };
   // Exclusão de modelos
   const ClickDeleteModel = async (record: any) => {
     await deleteModel(record);
@@ -262,7 +262,7 @@ export default function Model() {
         id={recordModel?.id}
         openModal={showModal}
         closeModal={hideModal}
-        onModelCreated={handleModelCreated} // Passa a função handleAxleCreated como prop
+        onModelCreated={handleModelCreated} // Passa a função handleModelCreated como prop
       />
     </>
   );

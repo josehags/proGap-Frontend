@@ -23,8 +23,8 @@ const ModalModel = ({ id, openModal, closeModal, onModelCreated }: Props) => {
           submitCreate();
         }
         form.resetFields();
-        closeModal(true);
         onModelCreated(); //Chama a prop  após o cadastro de novo modelo
+        closeModal(true);
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };
@@ -37,7 +37,6 @@ const ModalModel = ({ id, openModal, closeModal, onModelCreated }: Props) => {
     if (id) {
       await getNature(`model/${id}`).then(response => {
         if (response !== false) {
-          console.log(response.data);
           form.setFieldsValue({
             id: response.data.id,
             name: response.data.name,

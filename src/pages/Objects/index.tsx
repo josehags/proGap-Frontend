@@ -36,7 +36,7 @@ export default function Objects() {
   const searchInput = useRef<InputRef>(null);
   const [showModal, setShowModal] = useState(false);
 
-  const [objects, setObjects] = useState([]);
+  const [objects, setObjects] = useState<DataType[]>([]);
 
   const [recordObjects, setRecordObjects] = useState<any>({});
 
