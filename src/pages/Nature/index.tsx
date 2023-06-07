@@ -214,6 +214,8 @@ export default function Nature() {
   async function loadingNatureForm() {
     const response = await getNature('nature');
     if (response !== false) {
+      console.log(response.data);
+
       setNature(response.data);
     } else {
       message.error('Ocorreu um erro inesperado ao obter os eixos.');
