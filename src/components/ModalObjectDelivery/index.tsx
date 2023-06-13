@@ -82,10 +82,12 @@ const ModalObjectDelivery = ({
     },
   ];
   //Listagem de entregas
-  useEffect(() => {
-    loadingDeliveryForm();
-    form.setFieldValue('resourceObjects', idObjectResource);
-  }, [idObjectResource]);
+  form.setFieldValue('resourceObjects', idObjectResource);
+
+  // useEffect(() => {
+  //   loadingDeliveryForm();
+  //   form.setFieldValue('resourceObjects', idObjectResource);
+  // }, [idObjectResource]);
 
   useEffect(() => {
     loadingDeliveryForm();

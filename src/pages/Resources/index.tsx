@@ -522,6 +522,7 @@ export default function Resources() {
     ...resource,
     key: `resource${index}`,
   }));
+
   return (
     <>
       <Row>

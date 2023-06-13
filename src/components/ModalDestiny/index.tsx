@@ -38,9 +38,10 @@ const ModalDestiny = ({
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };
   //Setando id de recusrso no formulario para criação de destinos
-  useEffect(() => {
-    form.setFieldValue('resources', idResource);
-  }, [idResource]);
+  form.setFieldValue('resources', idResource);
+  // useEffect(() => {
+  //   form.setFieldValue('resources', idResource);
+  // }, []);
 
   //Listagem, se tiver id set no formulário
   useEffect(() => {
