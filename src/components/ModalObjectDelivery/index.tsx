@@ -38,7 +38,7 @@ const ModalObjectDelivery = ({
   openModal,
   closeModal,
 }: Props) => {
-  const [delivery, setDelivery] = useState([]);
+  const [delivery, setDelivery] = useState<DataType[]>([]); // Adicione a tipagem para o estado  delivery
 
   const [form] = Form.useForm();
 
@@ -82,16 +82,12 @@ const ModalObjectDelivery = ({
     },
   ];
   //Listagem de entregas
+  //setando id no input
   form.setFieldValue('resourceObjects', idObjectResource);
-
-  // useEffect(() => {
-  //   loadingDeliveryForm();
-  //   form.setFieldValue('resourceObjects', idObjectResource);
-  // }, [idObjectResource]);
 
   useEffect(() => {
     loadingDeliveryForm();
-  }, []);
+  }, [idObjectResource]);
 
   //listando as entregas relacionadas com os objetso do recursos
   async function loadingDeliveryForm() {
