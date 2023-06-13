@@ -43,8 +43,8 @@ const ModalResource = ({
         } else {
           submitCreate();
         }
-        form.resetFields();
         closeModal(true);
+        form.resetFields();
       })
       .catch(errorInfo => message.error('Erro no preenchimento dos campos.'));
   };
@@ -114,8 +114,8 @@ const ModalResource = ({
       width={'66%'}
       okText="Salvar"
       onCancel={() => {
-        form.resetFields();
         closeModal(false);
+        form.resetFields();
       }}
       onOk={handleOk}
     >
