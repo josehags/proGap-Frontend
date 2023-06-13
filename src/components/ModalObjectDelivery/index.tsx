@@ -121,6 +121,7 @@ const ModalObjectDelivery = ({
 
   const handleCreateDelivery = async () => {
     await submitCreate();
+    form.resetFields();
     loadingDeliveryForm();
   };
 
