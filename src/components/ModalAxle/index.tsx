@@ -59,6 +59,7 @@ const ModalAxle = ({ id, openModal, closeModal, updateAxleList }: Props) => {
   const submitUpdate = async () => {
     const editingAxle = form.getFieldsValue(true);
     await updateAxles(editingAxle, id);
+    updateAxleList(editingAxle); // Chama a função updateAxleList com o novo axle
   };
 
   return (
