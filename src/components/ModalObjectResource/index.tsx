@@ -38,9 +38,6 @@ const ModalObjectResource = ({
   const [form] = Form.useForm();
   //Setando id de destinação no formulario para criação de objetos
   form.setFieldValue('destination', idDestination);
-  // useEffect(() => {
-  //   form.setFieldValue('destination', idDestination);
-  // }, [idDestination]);
 
   useEffect(() => {
     loadingObjectsResource();

@@ -48,7 +48,6 @@ const ModalAxle = ({ id, openModal, closeModal, updateAxleList }: Props) => {
     }
   }
   // CRIAÇÃO DE eixos
-  // No componente ModalAxle
   const submitCreate = async () => {
     const editingAxle = form.getFieldsValue(true);
     await postAxles(editingAxle);

@@ -71,6 +71,7 @@ const ModalResource = ({
           deliveryDate: response.data?.deliveryDate,
           settlementDate: response.data?.settlementDate,
         });
+        handleSelectType(response.data?.type); // Adicione esta linha para atualizar o estado showAxle
       }
     });
   }
@@ -104,6 +105,9 @@ const ModalResource = ({
   function handleSelectAxle(value: any) {
     setSelectedAxlesId(value); // Atualiza o estado com o ID selecionado
   }
+
+  // Função que atualizar o estado showAxle
+
   const handleSelectType = (value: any) => {
     setShowAxle(value === 'Fundo a Fundo');
   };
